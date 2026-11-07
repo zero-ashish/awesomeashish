@@ -41,7 +41,8 @@ const testimonials = [
   { quote: 'He understands both emotion and retention. Every revision was thoughtful and aligned with our brand tone.', name: 'YouTube Creator' },
 ] as const
 
-const tools = ['Adobe Premiere Pro', 'Adobe After Effects', 'DaVinci Resolve', 'Final Cut Pro', 'Adobe Audition', 'Color Grading', 'Sound Design', 'Motion Graphics', 'Short-form Reels', 'Long-form YouTube', 'Commercial Ads', 'Documentary Cuts']
+const editingTools = ['Adobe Premiere Pro', 'Adobe After Effects', 'DaVinci Resolve', 'Final Cut Pro', 'Adobe Audition', 'Color Grading', 'Sound Design', 'Motion Graphics']
+const aiTools = ['Google Flow', 'Higgsfield', 'Zyka', 'ElevenLabs', 'ChatGPT', 'Gemini']
 
 const hiddenVideoProjects = new Set(['Product Explainer for SaaS', 'Wedding Highlight Film', 'Performance Ad Variations'])
 
@@ -135,9 +136,13 @@ export default function VideoPortfolioHome() {
 
 
       <section id="about" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-24">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-start">
-          <div><p className="mb-3 text-sm uppercase tracking-[0.25em] text-purple-400">About me</p><h2 className="text-4xl font-bold sm:text-5xl">Pacing is strategy.</h2><p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">I am a video editor who believes pacing is strategy. Every cut, sound cue, and color pass should support the message, not distract from it.</p><p className="mt-4 max-w-2xl leading-relaxed text-gray-400">I work with founders, creators, and teams to turn rough footage into clear stories that feel sharp, modern, and emotionally engaging.</p><p className="mt-4 max-w-2xl leading-relaxed text-gray-400">Outside editing, I study film language, sound design, and visual storytelling trends across ads and digital media.</p></div>
-          <div className="rounded-2xl border border-white/10 bg-zinc-950 p-6"><p className="mb-5 text-xs uppercase tracking-[0.2em] text-gray-500">Editing toolkit</p><div className="flex flex-wrap gap-2">{tools.map((tool) => <span key={tool} className="rounded-full border border-purple-400/25 bg-purple-400/5 px-3 py-2 text-xs text-gray-300">{tool}</span>)}</div></div>
+        <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+          <div><p className="mb-3 text-sm uppercase tracking-[0.25em] text-purple-400">About me</p><h2 className="text-4xl font-bold sm:text-5xl">Pacing is strategy.</h2></div>
+          <div className="max-w-3xl"><p className="text-lg leading-relaxed text-gray-300">I am a video editor who believes pacing is strategy. Every cut, sound cue, and color pass should support the message, not distract from it.</p><p className="mt-4 leading-relaxed text-gray-400">I work with founders, creators, and teams to turn rough footage into clear stories that feel sharp, modern, and emotionally engaging. Outside editing, I study film language, sound design, and visual storytelling trends across ads and digital media.</p></div>
+        </div>
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-zinc-950/80 p-6 sm:p-7"><div className="mb-5 flex items-center justify-between"><h3 className="text-lg font-semibold text-white">Editing &amp; post-production</h3><span className="text-xs uppercase tracking-widest text-gray-500">01 / craft</span></div><div className="flex flex-wrap gap-2.5">{editingTools.map((tool) => <span key={tool} className="rounded-full border border-purple-400/25 bg-purple-400/5 px-3.5 py-2.5 text-sm text-gray-300">{tool}</span>)}</div></div>
+          <div className="rounded-2xl border border-purple-400/20 bg-gradient-to-br from-purple-950/35 to-zinc-950 p-6 sm:p-7"><div className="mb-5 flex items-center justify-between"><h3 className="text-lg font-semibold text-white">AI creation tools</h3><span className="text-xs uppercase tracking-widest text-purple-300/70">02 / explore</span></div><div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">{aiTools.map((tool, index) => <div key={tool} className="flex min-h-[74px] items-center gap-3 rounded-xl border border-white/10 bg-black/30 px-3 py-3"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-purple-400/10 text-xs font-bold text-purple-300">{['F', 'H', 'Z', '11', '✳', '✦'][index]}</span><span className="text-sm font-medium text-gray-200">{tool}</span></div>)}</div></div>
         </div>
         {/* Temporarily hidden; original timeline and experience data remain above for later restoration.
         <div className="mt-16 grid gap-4 md:grid-cols-2">{timeline.map((item) => <article key={item.year} className="flex gap-4 rounded-xl border border-white/10 bg-zinc-950 p-5"><span className="text-lg font-bold text-purple-400">{item.year}</span><div><h3 className="font-semibold text-white">{item.title}</h3><p className="mt-2 text-sm leading-relaxed text-gray-400">{item.desc}</p></div></article>)}</div>
