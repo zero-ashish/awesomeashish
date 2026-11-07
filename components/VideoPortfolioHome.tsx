@@ -1,28 +1,26 @@
 'use client'
 
 import { useMemo, useState, type FormEvent, type ReactNode } from 'react'
-// import Image from 'next/image'
 import { motion } from 'motion/react'
 import { CONTACT_EMAIL, SOCIALS } from '@/components/contactInfo'
 import { projects } from '@/components/projectsData'
 import { getYouTubeThumbnailUrl, getYouTubeVideoId } from '@/lib/youtube'
-// Temporarily hidden hero assets; restore these imports with the JSX below when needed.
-// import profileImage from '@/assets/hero/aman_face.png'
 // import afterEffectsIcon from '@/assets/hero/after_effect.png'
 // import davinciIcon from '@/assets/hero/davinci.png'
 // import photoshopIcon from '@/assets/hero/photoshop.png'
 // import premiereIcon from '@/assets/hero/premiore_pro.png'
 
 const aiVideos = [
-  { title: 'AI Long Video 01', type: 'Long Video', url: 'https://youtu.be/PiQNe2Quf40?si=q9PxJg5mZmsk9h7M' },
-  { title: 'AI Long Video 02', type: 'Long Video', url: 'https://youtu.be/scLBJSJdLfQ?si=68OlfUCvvLYs4TuL' },
-  { title: 'AI Long Video 03', type: 'Long Video', url: 'https://youtu.be/M8rnWDZNb6c?si=dGqlK9v34vS_Z7Xb' },
-  { title: 'AI Short 01', type: 'Short', url: 'https://youtube.com/shorts/lmSJvaAzUjw?si=OLq4av4pVxhO6lwR' },
-  { title: 'AI Short 02', type: 'Short', url: 'https://youtube.com/shorts/VHEjAqc8ixs?si=SRmAfcsY1pk1ZspJ' },
-  { title: 'AI Short 03', type: 'Short', url: 'https://youtube.com/shorts/XQ_pltw0BzU?si=guIdPom73XI1Amy3' },
-  { title: 'AI Short 04', type: 'Short', url: 'https://youtube.com/shorts/uOd66cbsH0o?si=oItsB14uznhvnlIh' },
-  { title: 'AI Short 05', type: 'Short', url: 'https://youtube.com/shorts/LySRiuZNYuA?si=a5viPpmhoNwJ9o1Z' },
-  { title: 'AI Short 06', type: 'Short', url: 'https://youtube.com/shorts/2-5-N3lPYgQ?si=DKsMU2A-jh_H-HBP' },
+  { title: 'Story 01', type: 'Story', url: 'https://youtube.com/shorts/7uHJ9H7OdB8' },
+  { title: 'Story 02', type: 'Story', url: 'https://youtube.com/shorts/zfXz2QNDdR0' },
+  { title: 'Story 03', type: 'Story', url: 'https://youtube.com/shorts/Gke3twjPPiE' },
+  { title: 'Story 04', type: 'Story', url: 'https://youtube.com/shorts/SuUFMun3NBg' },
+  { title: 'Story 05', type: 'Story', url: 'https://youtube.com/shorts/wiyVQ85TxhE' },
+  { title: 'Story 06', type: 'Story', url: 'https://youtube.com/shorts/drVXyXp7ovo' },
+  { title: 'High Retention 01', type: 'High Retention', url: 'https://youtube.com/shorts/DBAV968vhmg' },
+  { title: 'High Retention 02', type: 'High Retention', url: 'https://youtube.com/shorts/Kmz8_dEllZU' },
+  { title: 'High Retention 03', type: 'High Retention', url: 'https://youtube.com/shorts/Rp3DJABwGZE' },
+  { title: 'High Retention 04', type: 'High Retention', url: 'https://youtube.com/shorts/c2eVWGA8S_0' },
 ] as const
 
 const timeline = [
@@ -47,10 +45,7 @@ const tools = ['Adobe Premiere Pro', 'Adobe After Effects', 'DaVinci Resolve', '
 
 const hiddenVideoProjects = new Set(['Product Explainer for SaaS', 'Wedding Highlight Film', 'Performance Ad Variations'])
 
-const longFormWork = [
-  ...projects.filter((project) => !hiddenVideoProjects.has(project.title)).map((project) => ({ title: project.title, type: project.category, url: project.watch ?? '' })),
-  ...aiVideos.filter((video) => video.type === 'Long Video').map((video) => ({ title: video.title, type: video.type, url: video.url })),
-]
+const longFormWork = projects.filter((project) => !hiddenVideoProjects.has(project.title)).map((project) => ({ title: project.title, type: project.category, url: project.watch ?? '' }))
 
 function SectionTitle({ accent, children, id }: { accent: string; children: ReactNode; id?: string }) {
   return (
@@ -115,42 +110,29 @@ export default function VideoPortfolioHome() {
 
   return (
     <main className="video-portfolio min-h-screen overflow-hidden bg-black text-white">
-      <header className="sticky top-0 z-50 flex items-center justify-between bg-black/90 px-5 py-6 backdrop-blur-md sm:px-8">
-        <a href="#home" className="text-xl font-bold tracking-widest sm:text-2xl text-white">Ashish Kushwaha</a>
-        <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.2em] text-gray-300 md:flex">
-          <a href="#home" className="transition hover:text-purple-400">Home</a>
-          <a href="#about" className="transition hover:text-purple-400">About</a>
-          <a href="#portfolio" className="transition hover:text-purple-400">Portfolio</a>
-          <a href="#testimonials" className="transition hover:text-purple-400">Testimonials</a>
-          <a href="#contact" className="transition hover:text-purple-400">Contact</a>
+      <header className="sticky top-0 z-50 flex items-center justify-between bg-black/90 px-5 py-5 backdrop-blur-md sm:px-8">
+        <a href="#home" className="text-lg font-black tracking-wide text-white sm:text-xl">ASHISH<span className="text-purple-500">.</span></a>
+        <nav className="hidden items-center gap-7 text-xs font-medium text-gray-300 md:flex">
+          <a href="#home" className="text-lime-300 underline decoration-lime-300 underline-offset-8">Home</a>
+          <a href="#portfolio" className="transition hover:text-lime-300">Projects</a>
+          <a href="#about" className="transition hover:text-lime-300">About</a>
+          <a href="#portfolio" className="transition hover:text-lime-300">AI Edits</a>
+          <a href="#contact" className="transition hover:text-lime-300">Contact</a>
         </nav>
-        <a href="https://www.linkedin.com/in/awesomeashish/" target="_blank" rel="noreferrer" className="text-xs uppercase tracking-widest text-gray-400 transition hover:text-purple-400">LinkedIn</a>
+        <a href="#contact" aria-label="Contact Ashish" className="grid h-10 w-10 place-items-center rounded-full bg-purple-700 text-lg text-white transition hover:bg-purple-600">☰</a>
       </header>
 
-      <section id="home" className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-14 sm:px-8 md:grid-cols-2 md:pb-28 md:pt-20">
-        <div className="text-center md:text-left">
-          <p className="mb-3 font-semibold uppercase tracking-[0.25em] text-purple-400">Video Editor &amp; Motion Designer</p>
-          <h1 className="text-5xl font-extrabold leading-[0.95] sm:text-6xl lg:text-8xl"><span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">PROFESSIONAL</span><br /><span className="font-serif italic text-purple-400">Video Editing</span></h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-gray-300 md:mx-0">Hi, I’m <span className="font-semibold text-white">Ashish Kushwaha</span> — I create <span className="font-semibold text-purple-400">scroll-stopping video stories</span> that keep audiences hooked.</p>
-          <a href="#contact" className="mt-8 inline-flex rounded bg-purple-600 px-8 py-4 font-bold uppercase tracking-wider transition hover:scale-105 hover:bg-purple-700">Let&apos;s talk</a>
+      <section id="home" className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-10 sm:px-8 md:min-h-[510px] md:grid-cols-[1.1fr_0.9fr] md:pb-16 md:pt-12">
+        <div className="relative z-10 text-center md:text-left">
+          <p className="mb-3 font-semibold text-lime-300">Hey, I&apos;m</p>
+          <h1 className="text-6xl font-black leading-[0.88] tracking-tight sm:text-7xl lg:text-[7.2rem]">ASHISH<span className="text-lime-300">.</span></h1>
+          <p className="mt-6 text-sm font-medium text-gray-200 sm:text-base">Video Editor <span className="text-lime-300">•</span> Motion Designer <span className="text-lime-300">•</span> AI Storyteller</p>
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-gray-400 md:mx-0">I turn ideas into bold, story-led edits that make people stop scrolling and keep watching.</p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3 md:justify-start"><a href="#portfolio" className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-6 py-3 text-sm font-bold text-black transition hover:bg-lime-200">▶ Watch my edits</a><a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-purple-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-purple-600/20">Let&apos;s work together ↗</a></div>
         </div>
-
-        <div className="relative mx-auto flex h-[25rem] w-full max-w-xl items-center justify-center">
-          {/* Dotted orbit circle temporarily hidden.
-          <div className="absolute h-64 w-64 rounded-full border border-dashed border-gray-700 md:h-96 md:w-96" />
-          */}
-          {/* Profile circle and image temporarily hidden.
-          <div className="relative grid h-60 w-60 place-items-center overflow-hidden rounded-full border-2 border-gray-500/50 bg-zinc-950 shadow-[0_0_80px_rgba(147,51,234,0.18)] md:h-80 md:w-80">
-            <Image src={profileImage} alt="Ashish Kushwaha" fill priority className="object-contain object-bottom" />
-          </div>
-          */}
-          {/* Floating editing-tool icons temporarily hidden.
-          <div className="tool-orbit tool-orbit-one"><Image src={premiereIcon} alt="Adobe Premiere Pro" fill className="object-contain p-1" /></div><div className="tool-orbit tool-orbit-two"><Image src={afterEffectsIcon} alt="Adobe After Effects" fill className="object-contain p-1" /></div><div className="tool-orbit tool-orbit-three"><Image src={davinciIcon} alt="DaVinci Resolve" fill className="object-contain p-1" /></div><div className="tool-orbit tool-orbit-four"><Image src={photoshopIcon} alt="Adobe Photoshop" fill className="object-contain p-1" /></div>
-          */}
-        </div>
+        <div className="hidden md:block" aria-hidden="true" />
       </section>
 
-      <div className="flex items-center justify-center gap-8 border-y border-white/10 bg-zinc-950 px-4 py-10 sm:gap-12"><h2 className="text-4xl font-extrabold uppercase tracking-wide sm:text-6xl">Video Editing</h2><span className="text-6xl text-gray-500 sm:text-8xl">✦</span></div>
 
       <section id="about" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-24">
         <div className="grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-start">
@@ -163,8 +145,10 @@ export default function VideoPortfolioHome() {
         */}
       </section>
 
-      <SectionTitle accent="AI" id="portfolio">Reels</SectionTitle>
-      <section className="mx-auto grid max-w-7xl gap-6 px-5 pb-12 sm:px-8 sm:grid-cols-2 lg:grid-cols-3">{aiVideos.filter((video) => video.type === 'Short').map((video) => <VideoCard key={video.url} {...video} short />)}</section>
+      <section id="portfolio" className="mx-auto max-w-7xl px-5 py-12 sm:px-8 md:py-16">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-300">AI video edits</p><h2 className="mt-2 text-4xl font-extrabold sm:text-5xl">Shorts <span className="font-serif italic text-purple-400">that hold attention.</span></h2></div><p className="max-w-md text-sm leading-relaxed text-gray-400">A selection of AI-assisted stories and high-retention edits. Choose a video to watch it here.</p></div>
+        {(['Story', 'High Retention'] as const).map((category) => <div key={category} className="mb-12"><div className="mb-5 flex items-center gap-3"><h3 className="text-xl font-bold text-white">{category}</h3><span className="h-px flex-1 bg-white/10"/><span className="text-xs text-gray-500">{aiVideos.filter((video) => video.type === category).length} videos</span></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{aiVideos.filter((video) => video.type === category).map((video) => <VideoCard key={video.url} {...video} short />)}</div></div>)}
+      </section>
 
       <SectionTitle accent="Long-Form">Content</SectionTitle>
       <section className="mx-auto grid max-w-7xl gap-6 px-5 pb-12 sm:px-8 sm:grid-cols-2 lg:grid-cols-3">{longFormWork.map((item) => <VideoCard key={item.title} {...item} />)}</section>

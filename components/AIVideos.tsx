@@ -6,56 +6,13 @@ import { getYouTubeVideoId } from '@/lib/youtube'
 
 type AIVideo = {
   title: string
-  type: 'Long Video' | 'Short'
+  type: 'Story' | 'High Retention'
   url: string
 }
 
 const aiVideos: readonly AIVideo[] = [
-  {
-    title: 'AI Long Video 01',
-    type: 'Long Video',
-    url: 'https://youtu.be/PiQNe2Quf40?si=q9PxJg5mZmsk9h7M',
-  },
-  {
-    title: 'AI Long Video 02',
-    type: 'Long Video',
-    url: 'https://youtu.be/scLBJSJdLfQ?si=68OlfUCvvLYs4TuL',
-  },
-  {
-    title: 'AI Long Video 03',
-    type: 'Long Video',
-    url: 'https://youtu.be/M8rnWDZNb6c?si=dGqlK9v34vS_Z7Xb',
-  },
-  {
-    title: 'AI Short 01',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/lmSJvaAzUjw?si=OLq4av4pVxhO6lwR',
-  },
-  {
-    title: 'AI Short 02',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/VHEjAqc8ixs?si=SRmAfcsY1pk1ZspJ',
-  },
-  {
-    title: 'AI Short 03',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/XQ_pltw0BzU?si=guIdPom73XI1Amy3',
-  },
-  {
-    title: 'AI Short 04',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/Sh7ZB8xHgnw?feature=share',
-  },
-  {
-    title: 'AI Short 05',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/TzOVIn80sA8?feature=share',
-  },
-  {
-    title: 'AI Short 06',
-    type: 'Short',
-    url: 'https://youtube.com/shorts/PNnoV0sYLJg?feature=share',
-  },
+  ...['7uHJ9H7OdB8', 'zfXz2QNDdR0', 'Gke3twjPPiE', 'SuUFMun3NBg', 'wiyVQ85TxhE', 'drVXyXp7ovo'].map((id, index) => ({ title: `Story ${String(index + 1).padStart(2, '0')}`, type: 'Story' as const, url: `https://youtube.com/shorts/${id}` })),
+  ...['DBAV968vhmg', 'Kmz8_dEllZU', 'Rp3DJABwGZE', 'c2eVWGA8S_0'].map((id, index) => ({ title: `High Retention ${String(index + 1).padStart(2, '0')}`, type: 'High Retention' as const, url: `https://youtube.com/shorts/${id}` })),
 ] as const
 
 function getThumbnailUrls(videoId: string): string[] {
@@ -73,7 +30,7 @@ function AIVideoCard({ video, index }: { video: AIVideo; index: number }) {
   const [thumbnail, setThumbnail] = useState<string | null>(null)
   const videoId = getYouTubeVideoId(video.url)
   const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1` : null
-  const isShort = video.type === 'Short'
+  const isShort = true
 
   useEffect(() => {
     let isMounted = true
@@ -182,9 +139,6 @@ function AIVideoCard({ video, index }: { video: AIVideo; index: number }) {
 }
 
 export default function AIVideos() {
-  const longVideos = aiVideos.filter((video) => video.type === 'Long Video')
-  const shorts = aiVideos.filter((video) => video.type === 'Short')
-
   return (
     <section className="mx-auto max-w-5xl py-12 md:py-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -194,32 +148,21 @@ export default function AIVideos() {
             AI videos.
           </div>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
-            Long-form videos and shorts built around AI tools, creator workflows, and fast product storytelling.
+            AI-assisted stories and high-retention edits, made for short-form viewing.
           </p>
         </div>
       </div>
 
-      <div className="mt-6">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Long Videos</h3>
+      {(['Story', 'High Retention'] as const).map((category) => (
+        <div className="mt-8" key={category}>
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{category}</h3>
+          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+            {aiVideos.filter((video) => video.type === category).map((video, index) => (
+              <AIVideoCard key={video.url} video={video} index={index} />
+            ))}
+          </div>
         </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {longVideos.map((video, index) => (
-            <AIVideoCard key={video.url} video={video} index={index} />
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-8">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Shorts</h3>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-          {shorts.map((video, index) => (
-            <AIVideoCard key={video.url} video={video} index={index + longVideos.length} />
-          ))}
-        </div>
-      </div>
+      ))}
     </section>
   )
 }
