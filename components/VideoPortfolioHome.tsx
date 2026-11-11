@@ -21,6 +21,14 @@ const aiVideos = [
   { title: 'High Retention 02', type: 'High Retention', url: 'https://youtube.com/shorts/Kmz8_dEllZU' },
   { title: 'High Retention 03', type: 'High Retention', url: 'https://youtube.com/shorts/Rp3DJABwGZE' },
   { title: 'High Retention 04', type: 'High Retention', url: 'https://youtube.com/shorts/c2eVWGA8S_0' },
+  { title: 'Ultra Realistic Ad 01', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/D5jzeuSnWsM' },
+  { title: 'Ultra Realistic Ad 02', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/uJb7dq_PWnU' },
+  { title: 'Ultra Realistic Ad 03', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/eZjEnhg3Elo' },
+  { title: 'Ultra Realistic Ad 04', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/QTx9A78fgqg' },
+  { title: 'Ultra Realistic Ad 05', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/zdYFd4bNLb8' },
+  { title: 'Ultra Realistic Ad 06', type: 'Ultra Realistic Ads', url: 'https://youtube.com/shorts/slWSBOyxk18' },
+  { title: 'Cartoon', type: 'Cartoon', url: 'https://youtube.com/shorts/_fiVPyVZLw4' },
+  { title: 'Standup', type: 'Cartoon', url: 'https://youtube.com/shorts/X6zqPGa9uok' },
 ] as const
 
 const timeline = [
@@ -152,7 +160,7 @@ export default function VideoPortfolioHome() {
 
       <section id="portfolio" className="mx-auto max-w-7xl px-5 py-12 sm:px-8 md:py-16">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-300">AI video edits</p><h2 className="mt-2 text-4xl font-extrabold sm:text-5xl">Shorts <span className="font-serif italic text-purple-400">that hold attention.</span></h2></div><p className="max-w-md text-sm leading-relaxed text-gray-400">A selection of AI-assisted stories and high-retention edits. Choose a video to watch it here.</p></div>
-        {(['Story', 'High Retention'] as const).map((category) => <div key={category} className="mb-12"><div className="mb-5 flex items-center gap-3"><h3 className="text-xl font-bold text-white">{category}</h3><span className="h-px flex-1 bg-white/10"/><span className="text-xs text-gray-500">{aiVideos.filter((video) => video.type === category).length} videos</span></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{aiVideos.filter((video) => video.type === category).map((video) => <VideoCard key={video.url} {...video} short />)}</div></div>)}
+        {(['Ultra Realistic Ads', 'Story', 'High Retention', 'Cartoon'] as const).map((category) => <div key={category} className="mb-12"><div className="mb-5 flex items-center gap-3"><h3 className="text-xl font-bold text-white">{category}</h3><span className="h-px flex-1 bg-white/10"/><span className="text-xs text-gray-500">{aiVideos.filter((video) => video.type === category).length} videos</span></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{aiVideos.filter((video) => video.type === category).map((video) => <VideoCard key={video.url} {...video} short />)}</div></div>)}
       </section>
 
       <SectionTitle accent="Long-Form">Content</SectionTitle>

@@ -6,13 +6,16 @@ import { getYouTubeVideoId } from '@/lib/youtube'
 
 type AIVideo = {
   title: string
-  type: 'Story' | 'High Retention'
+  type: 'Story' | 'High Retention' | 'Ultra Realistic Ads' | 'Cartoon'
   url: string
 }
 
 const aiVideos: readonly AIVideo[] = [
   ...['7uHJ9H7OdB8', 'zfXz2QNDdR0', 'Gke3twjPPiE', 'SuUFMun3NBg', 'wiyVQ85TxhE', 'drVXyXp7ovo'].map((id, index) => ({ title: `Story ${String(index + 1).padStart(2, '0')}`, type: 'Story' as const, url: `https://youtube.com/shorts/${id}` })),
   ...['DBAV968vhmg', 'Kmz8_dEllZU', 'Rp3DJABwGZE', 'c2eVWGA8S_0'].map((id, index) => ({ title: `High Retention ${String(index + 1).padStart(2, '0')}`, type: 'High Retention' as const, url: `https://youtube.com/shorts/${id}` })),
+  ...['D5jzeuSnWsM', 'uJb7dq_PWnU', 'eZjEnhg3Elo', 'QTx9A78fgqg', 'zdYFd4bNLb8', 'slWSBOyxk18'].map((id, index) => ({ title: `Ultra Realistic Ad ${String(index + 1).padStart(2, '0')}`, type: 'Ultra Realistic Ads' as const, url: `https://youtube.com/shorts/${id}` })),
+  { title: 'Cartoon', type: 'Cartoon', url: 'https://youtube.com/shorts/_fiVPyVZLw4' },
+  { title: 'Standup', type: 'Cartoon', url: 'https://youtube.com/shorts/X6zqPGa9uok' },
 ] as const
 
 function getThumbnailUrls(videoId: string): string[] {
@@ -148,12 +151,12 @@ export default function AIVideos() {
             AI videos.
           </div>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
-            AI-assisted stories and high-retention edits, made for short-form viewing.
+            AI-assisted stories, high-retention edits, and ads made for short-form viewing.
           </p>
         </div>
       </div>
 
-      {(['Story', 'High Retention'] as const).map((category) => (
+      {(['Ultra Realistic Ads', 'Story', 'High Retention', 'Cartoon'] as const).map((category) => (
         <div className="mt-8" key={category}>
           <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{category}</h3>
           <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
